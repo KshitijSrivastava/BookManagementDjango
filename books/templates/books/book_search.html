@@ -1,0 +1,43 @@
+{% extends "books/base.html" %}
+
+{% block content %}
+
+<div class='container'>
+    <h1 class="page-header">Inventory List of Books</h1>
+  <table class="table" id="book-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th> Is Available in Inventory</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in book_list %}
+        <tr>
+          <td>{{ book.id }}</td>
+          <td>{{ book.title }}</td>
+          <td>{{book.authors}}</td>
+          <td>{{ book.is_available }}</td>
+        <td>
+      <a href="{% url 'book_add' book.id %}">
+          <button type="button"
+              class="btn btn-sm js-delete-book">
+        <span class="glyphicon"></span> Add a Book to Inventory
+          </button>
+      </a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="7" class="text-center bg-warning">No book</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+
+
+{% endblock %}
